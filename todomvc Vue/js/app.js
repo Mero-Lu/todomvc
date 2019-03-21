@@ -50,10 +50,13 @@
 			// }
 			// 右下角  全删
 			alldel () {
-				console.log(2223)
-				this.list = []
+				// console.log(2223)
+				this.list = this.list.filter(item => !item.done)
 			}
 			
+		},
+		created() {
+			this.list = JSON.parse(localStorage.getItem('list') || '[]')
 		},
 		// 计算属性
 		computed : {
@@ -73,6 +76,21 @@
 			num() {
 				let numbe = this.list.filter(item => !item.done)
 				return numbe.length
+			},
+			// 右下角
+			iscompleted () {
+				return this.list.some(item => item.done)
+			}
+		},
+		// 监听器
+		watch : {
+			list:{
+				// 深监听
+				deep: true,
+				handler (newVal,oldVal) {  //回调
+					console.log(newVal)
+					localStorage.setItem('list',JSON.stringify(newVal))
+				}
 			}
 		}
 
