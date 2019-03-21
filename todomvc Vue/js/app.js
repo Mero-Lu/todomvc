@@ -4,11 +4,7 @@
 	const vm = new Vue({
 		el:'#app',
 		data:{
-			list:[
-				{id: 1,title:'吃饭',done:false},
-				{id: 2,title:'睡觉',done:true},
-				{id: 3,title:'打豆豆',done:false},
-			],
+			list:[],
 			msg:'',
 			editId:"-1",
 			
@@ -88,7 +84,7 @@
 				// 深监听
 				deep: true,
 				handler (newVal,oldVal) {  //回调
-					console.log(newVal)
+					// console.log(newVal)
 					localStorage.setItem('list',JSON.stringify(newVal))
 				}
 			}
